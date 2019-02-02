@@ -1,0 +1,10 @@
+{
+  "name": "photograph",
+  "version": "1.0.0",
+  "bin": {
+    "photograph": "photograph"
+  },
+  "dependencies": {
+    "exiftool-vendored": "^8.0.0"
+  }
+}

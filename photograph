@@ -1,0 +1,28 @@
+#!/bin/sh -e
+
+export PROGDIR=$(dirname "$(realpath "$0")")
+
+init() {
+    mkdir -p photos/full photos/hd photos/thumb
+    cp "$PROGDIR/template/README.md" README.md
+}
+
+md() {
+    sed -E -f "$PROGDIR/md.sed" "$@"
+}
+
+build() {
+    make -f "$PROGDIR/Makefile" build
+}
+
+orphans() {
+    make -f "$PROGDIR/Makefile" orphans
+}
+
+missing() {
+    make -f "$PROGDIR/Makefile" missing
+}
+
+command=$1; shift
+
+"$command" "$@"

@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const path = require('path')
+const { exiftool } = require('exiftool-vendored')
+
+const photo = process.argv[2]
+const name = path.basename(photo).split('.')[0]
+
+exiftool.read(photo)
+  .then(exif => {
+    console.log(`[![${name}](/photos/hd/${name}.jpg)](/photos/full/${name}.jpg?raw=true)
+
+<dl>
+  <dt>Name</dt>
+  <dd>${name}</dd>
+  <dt>Date</dt>
+  <dd>${exif.DateTimeOriginal.toISOString().split('.')[0]}</dd>
+  <dt>Make</dt>
+  <dd>${exif.Make}</dd>
+  <dt>Model</dt>
+  <dd>${exif.Model}</dd>
+  <dt>Focal length</dt>
+  <dd>${exif.FocalLength}</dd>
+  <dt>Focal length (35 mm equivalent)</dt>
+  <dd>${exif.FocalLengthIn35mmFormat}</dd>
+  <dt>Aperture</dt>
+  <dd>${exif.Aperture}</dd>
+  <dt>Shutter speed</dt>
+  <dd>${exif.ShutterSpeed}</dd>
+</dl>`)
+
+    return exiftool.end()
+  })
