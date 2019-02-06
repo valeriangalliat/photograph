@@ -23,7 +23,7 @@ missing: .photos .references
 	@grep --no-filename -o '[^/]*\.jpg' $^ | sort | uniq > $@
 
 photos/hd/%.jpg: photos/full/%.jpg
-	convert $< -resize 1920x $@
+	convert $< -resize 1920x1080^ $@
 
 photos/thumb/%.jpg: photos/full/%.jpg
 	convert $< -resize 200x133^ -gravity center -crop 200x133+0+0 $@
