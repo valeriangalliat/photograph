@@ -52,6 +52,7 @@ exiftool.read(photo)
         <td>${exif.ShutterSpeed}</td>
       </tr>
     </table>
+    <p><a href="/">Home</a></p>
   </div>
 `)
     process.stdout.write(foot)

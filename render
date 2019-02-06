@@ -4,6 +4,20 @@ if head -1 "$1" | grep -q '^#'; then
     title=$(head -1 "$1" | sed 's/^..//')
 fi
 
+convert_links() {
+    sed 's/\.md"/.html"/g'
+}
+
+add_home() {
+    sed 's,</h1>,<a href="/" class="home">Home</a></h1>,'
+}
+
+if [ "$1" = index.md ]; then
+    add_home() {
+        cat
+    }
+fi
+
 cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/"
-"$PROGDIR/node_modules/.bin/marked" "$1" | sed 's/\.md"/.html"/g'
+"$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home
 cat "$PROGDIR/foot.html"
