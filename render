@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+if head -1 "$1" | grep -q '^#'; then
+    title=$(head -1 "$1" | sed 's/^..//')
+fi
+
+cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/"
+"$PROGDIR/node_modules/.bin/marked" "$1" | sed 's/\.md"/.html"/g'
+cat "$PROGDIR/foot.html"

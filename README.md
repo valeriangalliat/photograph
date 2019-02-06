@@ -25,7 +25,7 @@ It will generate the following structure:
 
 ```
 .
-├── README.md
+├── index.md
 └── photos
     ├── full
     ├── hd
@@ -34,7 +34,7 @@ It will generate the following structure:
 
 ### Markdown
 
-Edit `README.md` with Vim, and run the following to render the image
+Edit `index.md` with Vim, and run the following to render the image
 shortcuts:
 
 ```

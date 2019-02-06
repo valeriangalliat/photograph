@@ -5,6 +5,9 @@
     "photograph": "photograph"
   },
   "dependencies": {
-    "exiftool-vendored": "^8.0.0"
+    "exiftool-vendored": "^8.0.0",
+    "github-markdown-css": "^3.0.1",
+    "marked": "^0.6.0",
+    "normalize.css": "^8.0.1"
   }
 }

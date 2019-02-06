@@ -3,8 +3,8 @@
 export PROGDIR=$(dirname "$(realpath "$0")")
 
 init() {
-    mkdir -p photos/full photos/hd photos/thumb
-    cp "$PROGDIR/template/README.md" README.md
+    mkdir -p photos/full photos/hd photos/thumb css js
+    cp "$PROGDIR/template/index.md" index.md
 }
 
 md() {
@@ -12,7 +12,7 @@ md() {
 }
 
 build() {
-    make -f "$PROGDIR/Makefile" build
+    make -f "$PROGDIR/Makefile" build -j8
 }
 
 orphans() {
