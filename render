@@ -12,6 +12,18 @@ add_home() {
     sed 's,</h1>,<a href="/" class="home">Home</a></h1>,'
 }
 
+add_intrinsicsize() {
+    content=$(cat)
+
+    for pattern in $(echo "$content" | grep -o 'src="[^"]*.jpg"'); do
+        file=$(echo "$pattern" | awk -F'"' '{print $2}')
+        size=$(identify "./$file" | awk '{print $3}')
+        content=$(echo "$content" | sed "s,$pattern,$pattern intrinsicsize=\"$size\",g")
+    done
+
+    echo "$content"
+}
+
 if [ "$1" = index.md ]; then
     add_home() {
         cat
@@ -19,5 +31,5 @@ if [ "$1" = index.md ]; then
 fi
 
 cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/"
-"$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home
+"$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home | add_intrinsicsize
 cat "$PROGDIR/foot.html"
