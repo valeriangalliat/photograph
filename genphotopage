@@ -51,6 +51,10 @@ exiftool.read(photo)
         <th>Shutter speed</th>
         <td>${exif.ShutterSpeed}</td>
       </tr>
+      <tr>
+        <th>ISO</th>
+        <td>${exif.ISO}</td>
+      </tr>
     </table>
     <p><a href="/">Home</a></p>
   </div>
