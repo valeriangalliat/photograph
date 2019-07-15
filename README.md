@@ -7,7 +7,7 @@
 ```sh
 # pacman -S imagemagick
 # apt install imagemagick
-# brew install imagemagick
+# brew install imagemagick coreutils
 npm install -g valeriangalliat/photograph
 ```
 
