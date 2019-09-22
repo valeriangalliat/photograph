@@ -16,11 +16,28 @@ build() {
 }
 
 orphans() {
+    if [ "$1" = "rm" ]; then
+        for orphan in $(make -f "$PROGDIR/Makefile" orphans); do
+            [ -f "photos/full/$orphan" ] && rm -i "photos/full/$orphan"
+            [ -f "photos/hd/$orphan" ] && rm -i "photos/hd/$orphan"
+            [ -f "photos/thumb/$orphan" ] && rm -i "photos/thumb/$orphan"
+
+            html=photos/$(echo "$orphan" | sed 's/\.[^\.]*$/.html/')
+            [ -f "$html" ] && rm -i "$html"
+        done
+
+        return
+    fi
+
     make -f "$PROGDIR/Makefile" orphans
 }
 
 missing() {
     make -f "$PROGDIR/Makefile" missing
+}
+
+new() {
+    "$PROGDIR/new" "$@"
 }
 
 command=$1; shift
