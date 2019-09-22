@@ -31,7 +31,7 @@ photos/thumb/%.jpg: photos/full/%.jpg
 photos/%.html: photos/full/%.jpg
 	$(PROGDIR)/genphotopage $< > $@
 
-%.html: %.md
+%.html: %.md $(PHOTOS_HD) $(PHOTOS_THUMB)
 	$(PROGDIR)/render $< > $@
 
 css/normalize.css: $(PROGDIR)/node_modules/normalize.css/normalize.css
