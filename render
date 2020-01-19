@@ -24,12 +24,20 @@ add_size() {
     done
 }
 
+add_body_class() {
+    cat
+}
+
 if [ "$1" = index.md ]; then
     add_home() {
         cat
     }
+
+    add_body_class() {
+        sed 's/<body class="markdown-body">/<body class="markdown-body home">/'
+    }
 fi
 
-cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/"
+cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/" | add_body_class
 "$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home | add_size
 cat "$PROGDIR/foot.html"
