@@ -28,6 +28,14 @@ add_body_class() {
     cat
 }
 
+marked() {
+    if [ -d "$PROGDIR/node_modules" ]; then
+        "$PROGDIR/node_modules/.bin/marked" "$@"
+    else
+        "$PROGDIR/../.bin/marked" "$@"
+    fi
+}
+
 if [ "$1" = index.md ]; then
     add_home() {
         cat
@@ -39,6 +47,6 @@ if [ "$1" = index.md ]; then
 fi
 
 cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/" | add_body_class
-"$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home | add_size
+marked "$1" | convert_links | add_home | add_size
 cat "foot.html"
 cat "$PROGDIR/foot.html"
