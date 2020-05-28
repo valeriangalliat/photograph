@@ -2,7 +2,7 @@ PHOTOS_FULL = $(shell find photos/full -name '*.jpg')
 PHOTOS_HD = $(PHOTOS_FULL:photos/full/%=photos/hd/%)
 PHOTOS_THUMB = $(PHOTOS_FULL:photos/full/%=photos/thumb/%)
 PHOTOS_HTML = $(PHOTOS_FULL:photos/full/%.jpg=photos/%.html)
-MD = $(shell find . -not -path './photos/*' -not -path ./README.md -name '*.md')
+MD = $(shell find . -name '*.md' ! -path './node_modules/*' ! -path './photos/*' ! -path ./README.md -printf '%P\n')
 HTML = $(MD:%.md=%.html)
 ASSETS = css/normalize.css css/codejam.css css/main.css js/main.js
 
