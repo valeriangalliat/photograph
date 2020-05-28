@@ -27,7 +27,7 @@ photos/hd/%.jpg: photos/full/%.jpg
 	convert $< -resize 1920x1080^ $@
 
 photos/thumb/%.jpg: photos/full/%.jpg
-	convert $< -resize 280x187^ -gravity center -extent 280x187 $@
+	convert $< -resize 300x200^ -gravity center -extent 300x200 $@
 
 photos/%.html: photos/full/%.jpg
 	$(PROGDIR)/genphotopage $< > $@
