@@ -4,7 +4,7 @@ PHOTOS_THUMB = $(PHOTOS_FULL:photos/full/%=photos/thumb/%)
 PHOTOS_HTML = $(PHOTOS_FULL:photos/full/%.jpg=photos/%.html)
 MD = $(shell find . -not -path './photos/*' -not -path ./README.md -name '*.md')
 HTML = $(MD:%.md=%.html)
-ASSETS = css/normalize.css css/github-markdown.css css/main.css js/main.js
+ASSETS = css/normalize.css css/codejam.css css/main.css js/main.js
 
 build: $(PHOTOS_HD) $(PHOTOS_THUMB) $(PHOTOS_HTML) $(HTML) $(ASSETS)
 
@@ -26,7 +26,7 @@ photos/hd/%.jpg: photos/full/%.jpg
 	convert $< -resize 1920x1080^ $@
 
 photos/thumb/%.jpg: photos/full/%.jpg
-	convert $< -resize 200x133^ -gravity center -crop 200x133+0+0 $@
+	convert $< -resize 280x187^ -gravity center -extent 280x187 $@
 
 photos/%.html: photos/full/%.jpg
 	$(PROGDIR)/genphotopage $< > $@
@@ -37,8 +37,12 @@ photos/%.html: photos/full/%.jpg
 css/normalize.css: $(PROGDIR)/node_modules/normalize.css/normalize.css
 	cp $< $@
 
-css/github-markdown.css: $(PROGDIR)/node_modules/github-markdown-css/github-markdown.css
-	cp $< $@
+css/codejam.css:
+	curl \
+		https://raw.githubusercontent.com/valeriangalliat/blog/master/css/base.css \
+		https://raw.githubusercontent.com/valeriangalliat/blog/master/css/components/footer.css \
+		https://raw.githubusercontent.com/valeriangalliat/blog/master/css/components/home.css \
+		| sed 's/^body {$$/.markdown-body {/' > $@
 
 css/main.css: $(PROGDIR)/main.css
 	cp $< $@

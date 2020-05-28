@@ -4,6 +4,7 @@ export PROGDIR=$(dirname "$(realpath "$0")")
 
 init() {
     mkdir -p photos/full photos/hd photos/thumb css js
+    cp "$PROGDIR/template/foot.html" foot.html
     cp "$PROGDIR/template/index.md" index.md
 }
 

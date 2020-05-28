@@ -9,7 +9,7 @@ convert_links() {
 }
 
 add_home() {
-    sed 's,</h1>,<a href="/" class="home">Home</a></h1>,'
+    sed 's,<h1,<header class="home"><a href="/">Home</a></header><h1,'
 }
 
 add_size() {
@@ -40,4 +40,5 @@ fi
 
 cat "$PROGDIR/head.html" | sed "s/<title>/<title>$title/" | add_body_class
 "$PROGDIR/node_modules/.bin/marked" "$1" | convert_links | add_home | add_size
+cat "foot.html"
 cat "$PROGDIR/foot.html"
