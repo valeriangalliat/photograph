@@ -1,3 +1,4 @@
+NM = $(shell if [ -d "$(PROGDIR)/node_modules" ]; then echo "$(PROGDIR)/node_modules"; else echo "$(PROGDIR)/.."; fi)
 PHOTOS_FULL = $(shell find photos/full -name '*.jpg')
 PHOTOS_HD = $(PHOTOS_FULL:photos/full/%=photos/hd/%)
 PHOTOS_THUMB = $(PHOTOS_FULL:photos/full/%=photos/thumb/%)
@@ -34,7 +35,7 @@ photos/%.html: photos/full/%.jpg
 %.html: %.md | $(PHOTOS_HD) $(PHOTOS_THUMB)
 	$(PROGDIR)/render $< > $@
 
-css/normalize.css: $(PROGDIR)/node_modules/normalize.css/normalize.css
+css/normalize.css: $(NM)/normalize.css/normalize.css
 	cp $< $@
 
 css/codejam.css:
