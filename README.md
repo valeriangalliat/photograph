@@ -2,8 +2,7 @@
 
 > Trivial tools to make a GitHub based photography portfolio.
 
-For an example, [photography.codejam.info](https://photography.codejam.info/)
-is built with this tool.
+**Warning:** deprecated, latest code is directly part of [valeriangalliat/photography](https://github.com/valeriangalliat/photography).
 
 ## Installation
 
